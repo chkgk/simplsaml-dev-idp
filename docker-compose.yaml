@@ -1,0 +1,18 @@
+version: "3"
+services:
+  idp:
+    image: kenchan0130/simplesamlphp
+    container_name: idp
+    ports:
+      - "8080:8080"
+    environment:
+      SIMPLESAMLPHP_SP_ENTITY_ID: http://host.docker.internal:8000/accounts/saml/opay/metadata/
+      SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: http://localhost:8000/accounts/saml/opay/acs/ 
+      SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: http://host.docker.internal:8000/accounts/saml/opay/sls/
+#      SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/test-sp
+#      SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: http://localhost/simplesaml/module.php/saml/sp/saml2-logout.php/test-sp
+    volumes:
+      - ./authsources.php:/var/www/simplesamlphp/config/authsources.php
+      # - ./saml20-sp-remote.php:/var/www/simplesamlphp/metadata/saml20-sp-remote.php
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
