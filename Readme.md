@@ -28,7 +28,7 @@ Edit docker-compose.yaml and update the environment variables to match your SP.
     - SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: http://localhost:8000/<yourapp>/acs/ 
     - SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: http://host.docker.internal:8000/<yourapp>/sls/
 ```
-Note in my case, the IDP runs on port 8080 in a docker container, but I am running my app directly on localhost at port 8000. For the IDP inside docker the SP seems to originate from host.docker.internal:8000, which refers to the host network. I needed to set this hostname on the SP_ENTITY_ID and SP_SINGLE_LOGOUT_SERVICE. I am not quite sure why, but it is not needed on the SP_ASSERTION_CONSUMER_SERVICE. Here it actually has to be the localhost hostname.
+Note, in my case, the IDP runs on port 8080 in a docker container, but I am running my app directly on localhost at port 8000. For the IDP inside docker the SP seems to originate from host.docker.internal:8000, which refers to the host network. I needed to set this hostname on the SP_ENTITY_ID and SP_SINGLE_LOGOUT_SERVICE. I am not quite sure why, but it is not needed on the SP_ASSERTION_CONSUMER_SERVICE. Here it actually has to be the localhost hostname.
 
 # Configure the SP
 You typically need to provide the SP (your application) with this information about the identity provider (IDP). It seems to be best practice to set the medata url also as the entity id. Provider ID is often set the same as the entity id.
@@ -60,4 +60,3 @@ Make sure that your SP's entity ID matches what you st in the environment variab
 # Remarks
 - Sometimes I get a 403 after successful sign-up / first time redirect from IDP to SP. I have not yet figured out why this happens. I think it is a session cookie issue stemming from the fact that both services think they run on localhost, while one is in docker (their own network) and the other one is not.
 - use SAML Tracer for Chrome or Firefox (see extension stores), to track what is sent and received. This is very helpful to debug SAML issues.
-- 
