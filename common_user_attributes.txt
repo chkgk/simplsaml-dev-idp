@@ -1,0 +1,25 @@
+# most common attributes for shibboleth in education
+
+Attribute Name
+eduPersonPrincipalName (eppn): unique identifier / username
+eduPersonTargetedID (targeted-id: a persistent opaque ID per SP
+eduPersonScopedAffiliation (affiliation): roles like student@university.edu, faculty@university.edu etc.
+mail (email)
+givenName (first_name)
+sn (last_name)
+displayName (display_name)
+eduPersonEntitlement (entitlement): access rights / permissions
+
+Optional
+uid: login id or local username, sometimes matches campus id
+cn (common_name): similar to display name
+employeeNumber
+studentID
+eduPersonOrcid
+telephoneNumber
+
+
+# eduPersonEntitlement
+- usually uri: uri:mace:example.com:entitlement:some-service
+- expect a list 
+- can have URL scheme
