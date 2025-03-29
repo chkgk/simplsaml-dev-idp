@@ -1,4 +1,4 @@
-# most common attributes for shibboleth in education
+# Most common attributes for shibboleth in education (according to ChatGPT, 29.03.2025)
 
 Attribute Name
 eduPersonPrincipalName (eppn): unique identifier / username
@@ -19,7 +19,7 @@ eduPersonOrcid
 telephoneNumber
 
 
-# eduPersonEntitlement
+# A note on eduPersonEntitlement
 - usually uri: uri:mace:example.com:entitlement:some-service
+- can have URL scheme instead
 - expect a list 
-- can have URL scheme
