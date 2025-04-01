@@ -5,12 +5,13 @@ services:
     ports:
       - "8080:8080"
     environment:
+      SIMPLESAMLPHP_IDP_SECRET_SALT: 6993b9324889bdc8540c2d448c6dfe5ffb261d3678aa0351dceb6d87bfc9785d
       SIMPLESAMLPHP_SP_ENTITY_ID: http://host.docker.internal:8000/accounts/saml/opay/metadata/
       SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: http://localhost:8000/accounts/saml/opay/acs/ 
       SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: http://host.docker.internal:8000/accounts/saml/opay/sls/
       SIMPLESAMLPHP_SP_NAMEID_FORMAT: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
     volumes:
       - ./authsources.php:/var/www/simplesamlphp/config/authsources.php
-      - ./saml20-sp-remote.php:/var/www/simplesamlphp/config-templates/saml20-sp-remote.php
+      - ./saml20-sp-remote.php:/var/www/simplesamlphp/metadata/saml20-sp-remote.php
     extra_hosts:
       - "host.docker.internal:host-gateway"
